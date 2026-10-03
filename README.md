@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PhishGuard Phishing Detection Dashboard
 
 The Streamlit dashboard includes a home screen with URL, QR, and screenshot scan cards; a dark navigation sidebar; latest results, key findings, and session scan history. PhishGuard extracts URL signals, applies a local phishing classifier, checks whether a public destination responds, and sends decoded QR destinations through the same URL pipeline. The screenshot classifier remains a research baseline.
@@ -54,3 +55,6 @@ The scanner blocks local/private network destinations and rechecks redirect host
 - `src/qr_detector.py` and `src/qr_scan.py`: QR decoding and destination analysis.
 - `src/model_training.py`: validation, model selection, held-out metrics, and saved uploaded model.
 - `src/ai_explainer.py`: optional GPT-6 explanations through the OpenAI Responses API.
+=======
+# Phishing-Detection-System
+>>>>>>> 7a61d326b01e13a35a8327d332156c4fd8a02abe
