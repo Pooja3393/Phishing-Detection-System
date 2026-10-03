@@ -208,7 +208,7 @@ def render_card_heading(icon, title, subtitle, color=""):
 def render_url_card(prefix="home"):
     with st.form(f"{prefix}_url_form"):
         url = st.text_input("Website URL", placeholder="https://example.com", key=f"{prefix}_url")
-        submitted = st.form_submit_button("⌕  Analyze URL", use_container_width=True, type="primary")
+        submitted = st.form_submit_button("⌕  Analyze URL", width="stretch", type="primary")
     if submitted:
         if not url.strip():
             st.warning("Enter a URL to scan.")
@@ -229,8 +229,8 @@ def render_url_card(prefix="home"):
 def render_qr_card(prefix="home"):
     upload = st.file_uploader("Upload QR image", type=["png", "jpg", "jpeg", "webp", "bmp"], key=f"{prefix}_qr_upload")
     if upload is not None:
-        st.image(upload, use_container_width=True)
-    if st.button("▦  Analyze QR Code", use_container_width=True, type="primary", key=f"{prefix}_qr"):
+        st.image(upload, width="stretch")
+    if st.button("▦  Analyze QR Code", width="stretch", type="primary", key=f"{prefix}_qr"):
         if upload is None:
             st.warning("Choose a QR image first.")
         else:
@@ -245,8 +245,8 @@ def render_qr_card(prefix="home"):
 def render_screenshot_card(prefix="home"):
     upload = st.file_uploader("Upload website screenshot", type=["png", "jpg", "jpeg", "webp", "bmp"], key=f"{prefix}_screen_upload")
     if upload is not None:
-        st.image(upload, use_container_width=True)
-    if st.button("▧  Analyze Screenshot", use_container_width=True, type="primary", key=f"{prefix}_screen"):
+        st.image(upload, width="stretch")
+    if st.button("▧  Analyze Screenshot", width="stretch", type="primary", key=f"{prefix}_screen"):
         if upload is None:
             st.warning("Choose a screenshot first.")
         else:
@@ -340,7 +340,7 @@ def render_history():
             "Result": classify_label(item),
             "Risk Score": f"{item.get('score', 0)}%",
         })
-    st.dataframe(pd.DataFrame(rows), hide_index=True, use_container_width=True)
+    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
 
 
 def render_latest_sections():
@@ -357,7 +357,7 @@ def render_latest_sections():
             render_history()
         with button_col:
             if st.session_state.scan_history:
-                if st.button("⌫ Clear History", key="clear_history", use_container_width=True):
+                if st.button("⌫ Clear History", key="clear_history", width="stretch"):
                     st.session_state.scan_history = []
                     st.session_state.latest_scan = None
                     st.rerun()
@@ -384,7 +384,7 @@ def render_training_page():
             return
         st.write(f"Detected {len(frame):,} rows and label column **{target}**.")
         phishing_value = st.selectbox("Which value means phishing?", label_values, key="phishing_label")
-        st.dataframe(frame.head(8), use_container_width=True)
+        st.dataframe(frame.head(8), width="stretch")
         if st.button("Train and activate model", type="primary", key="train_model"):
             with st.spinner("Evaluating the dataset and training the model…"):
                 bundle, _ = train_uploaded_dataset(frame, target, phishing_value)
